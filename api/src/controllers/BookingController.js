@@ -28,6 +28,15 @@ module.exports = {
       populate('user').
       execPopulate();
 
+    const ownerSocket = req.connectedUsers[booking.spot.user];
+
+    console.log(ownerSocket);
+
+    if (ownerSocket) {
+      console.log(booking);
+      req.io.to(ownerSocket).emit('booking_request', booking);
+    }
+
     return res.json(booking);
   }
 }

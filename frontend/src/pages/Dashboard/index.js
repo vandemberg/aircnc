@@ -20,7 +20,7 @@ export default function Dashboard() {
     socket.on('booking_request', data => {
       setRequests([...requests, data]);
     });
-  }, [])
+  }, [requests, socket])
 
   useEffect(() => {
     async function loadSpots() {
